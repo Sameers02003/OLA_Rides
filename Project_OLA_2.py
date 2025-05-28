@@ -4,10 +4,10 @@ import mysql.connector
 
 # --- MySQL Database Connection ---
 conn = mysql.connector.connect(
-    host="localhost",  # Update with your MySQL host
-    user="root",  # Replace with your MySQL username
-    password="Dijas@19110",  # Replace with your MySQL password
-    database="ola_rides"  # Replace with your database name
+    host="localhost", 
+    user="root",  
+    password="Dijas@19110",  
+    database="ola_rides"  
 )
 cursor = conn.cursor()
 
@@ -65,8 +65,8 @@ elif selected_page == "SQL Queries":
     queries = {
         "🚗 Total Number of Successful Rides": "SELECT COUNT(*) AS Successful_Rides FROM ride_insights WHERE booking_status = 'success';",
         "💰 Total Revenue Generated": "SELECT SUM(booking_value) AS Total_Revenue FROM ride_insights;",
-        "❌ Total Number of Cancelled Rides by Customers": "SELECT COUNT(*) AS Total_Canceled_Rides FROM ride_insights WHERE canceled_rides_by_customer;",
-        "🚦 Rides Cancelled by Drivers Due to Personal & Car Issues": "SELECT DISTINCT incomplete_rides_reason FROM ride_insights WHERE canceled_rides_by_driver = 'Yes';",
+        "❌ Total Number of Rides by Customers": "SELECT COUNT(*) AS Total_Number_Of_Rides FROM ride_insights;",
+        "🚦 Rides Cancelled by Drivers Due to Personal & Car Issues": "SELECT DISTINCT incomplete_rides_reason FROM Ride_Insights WHERE incomplete_rides_reason IN ('vehicle Breakdown','Not Specified', 'Other Issues','Customer Demand');",
         "🚘 Most Popular Vehicle Type": "SELECT vehicle_type, COUNT(*) AS Total_Rides FROM ride_insights GROUP BY vehicle_type ORDER BY Total_Rides DESC;",
         "🏅 Top 5 Customers by Number of Rides": "SELECT customer_id, COUNT(booking_id) AS Total_Rides FROM ride_insights GROUP BY customer_id ORDER BY Total_Rides DESC LIMIT 5;",
         "📏 Average Ride Distance": "SELECT ROUND(AVG(ride_distance), 2) AS Avg_Ride_Distance FROM ride_insights;",
